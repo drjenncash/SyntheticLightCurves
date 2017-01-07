@@ -8,7 +8,7 @@ Created on Wed Jul 20 10:49:45 2016
 @author: jcash
 """
 
-def make(period=10.0,noise_sigma=0,amp=1.0):
+def make_basic(period=10.0,noise_sigma=0,amp=1.0):
     ''' Create synthetic lightcurve file
         for now most of the stuff will be hardcoded and then added as options
     optional input:
@@ -155,9 +155,9 @@ def multi(vals,noise=0):
     #use the first item in list as first period or period.amp pair
     
     if len(vals[0])==1:
-        time,flux=make(vals[0],noise)
+        time,flux=make_basic(vals[0],noise)
     elif len(vals[0])==2:
-        time,flux=make(vals[0][0],noise,amp=vals[0][1])
+        time,flux=make_basic(vals[0][0],noise,amp=vals[0][1])
     else:
         print('first value is not a single or pair')
         return None
@@ -165,10 +165,10 @@ def multi(vals,noise=0):
     #now for remaining ones in the list
     for item in vals[1:]:
         if len(item)==1:
-            t,f=make(item[0])
+            t,f=make_basic(item[0])
             flux=flux+f
         elif len(item)==2:
-            t,f=make(item[0],amp=item[1])
+            t,f=make_basic(item[0],amp=item[1])
             flux=flux+f
         else: 
             ('the values '+item+' are not single or pair')
@@ -183,8 +183,8 @@ def multi(vals,noise=0):
 from lightcurves import syn
 
 #to make a singly periodic lightcurve
-time,flux=syn.make(period,noise,amplitude)
-time,flux=syn.make(10.0,0.05,1.0)
+time,flux=syn.make_basic(period,noise,amplitude)
+time,flux=syn.make_basic(10.0,0.05,1.0)
 
 
 #to make a multiperiodic lightcurve

@@ -9,6 +9,9 @@ This uses the python 3 syntax for input
 Created on Wed Jul 20 10:49:45 2016
 @author: jcash
 """
+import numpy as np
+from astropy.io import ascii
+import os
 
 def make_basic(period=10.0,noise_sigma=0,amp=1.0):
     ''' Create synthetic lightcurve file
@@ -24,7 +27,6 @@ def make_basic(period=10.0,noise_sigma=0,amp=1.0):
         
     last modified:  JLC 2016/07/20
     '''
-    import numpy as np
     
     # input values can be passed as parameters or will default to values
     # generally the period will be passed and the noise_sigma may be passed    
@@ -71,8 +73,6 @@ def make_gaps(time,flux,fraction=0.5):
     last modified:  JLC 2016/10/04
     '''
 
-    import numpy as np
-    
     # input values can be passed as parameters or will default to values
     # generally the period will be passed and the noise_sigma may be passed    
     
@@ -90,7 +90,9 @@ def make_gaps(time,flux,fraction=0.5):
     
   
     
-def write(time, flux, filename):
+
+def write_lc(time, flux, filename):
+
     """
     write out a synthetic light curve to an ascii file
     inputs:
@@ -104,6 +106,7 @@ def write(time, flux, filename):
 
     last modified:  JLC 2016/07/20
     """
+
     # checks that the data is okay, two array of same length
     len1 = len(time)
     len2 = len(flux)
@@ -190,5 +193,5 @@ time,flux=syn.multi(vals,noise)
 
 # to write out the new synthetic lightcurve
 filename='somepath/file'
-syn_write(time,flux,filename)
+syn.write_lc(time,flux,filename)
 """

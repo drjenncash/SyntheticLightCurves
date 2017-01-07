@@ -194,5 +194,5 @@ time,flux=syn.multi(vals,noise)
 
 # to write out the new synthetic lightcurve
 filename='somepath/file'
-syn_write(time,flux,filename)
+syn.write_lc(time,flux,filename)
 """

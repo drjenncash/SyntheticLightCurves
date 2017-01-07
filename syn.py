@@ -88,7 +88,7 @@ def make_gaps(time,flux,fraction=0.5):
     
   
     
-def write(time,flux,filename):
+def write_lc(time,flux,filename):
     """
     write out a synthetic light curve to an ascii file
     inputs:

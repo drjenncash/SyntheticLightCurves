@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from astropy.io import ascii
+import os
 """
 syn.py
 This is a collection of synthetic light curve tools.
@@ -88,7 +90,7 @@ def make_gaps(time,flux,fraction=0.5):
     
   
     
-def write(time,flux,filename):
+def write(time, flux, filename):
     """
     write out a synthetic light curve to an ascii file
     inputs:
@@ -99,35 +101,29 @@ def write(time,flux,filename):
         none
     actions:
         the new file is created
-        
+
     last modified:  JLC 2016/07/20
     """
-    
-    from astropy.io import ascii
-    import os
-    
     # checks that the data is okay, two array of same length
-    len1=len(time)  
-    len2=len(flux)
+    len1 = len(time)
+    len2 = len(flux)
     if len1 != len2:
         print('Error: arrays are not the same length')
         return
-    
+
     #check to see if the file already exists, ask if you want to clobber
     if os.path.isfile(filename):
         print(filename+' already exists. ')
-        tmp1=input('Overwrite this file? (y/n) ')
-        if tmp1=='y':
+        tmp1 = input('Overwrite this file? (y/n) ')
+        if tmp1 == 'y':
             pass
         else:
             return
-    
+
     # write data out to the file
-    ascii.write([time,flux],filename)
-    
-    return
-    
-    
+    ascii.write([time, flux], filename)
+
+
 def multi(vals,noise=0):
     """       
     A quick program to create a multiperiodic synthetic lightcurve.
